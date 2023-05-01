@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+    tools{
+        jdk 'JAVA_HOME'
+        maven 'MAVEN'
+
+    }
+    stages {
+        stage('Compile') {
+            steps {
+                script{
+                    echo "Compiling the code"
+                    git 'https://github.com/Sravanthi2030/COPADO.git'
+                    sh 'mvn compile'
+                }
+            }
+
+        }
+        stage('UnitTest') {
+            steps {
+                script{
+                    echo "Testing the code2"
+                    sh 'mvn test'
+                }
+            }
+
+        }
+         stage('Package') {
+            steps {
+                script{
+                    echo "Packaging the code"
+                    sh 'mvn package'
+                }
+            }
+
+        }
+    }
+    
+}
+
